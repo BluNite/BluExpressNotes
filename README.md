@@ -11,7 +11,7 @@ This assignment modifies starter code and creates an application called 'Note Ta
 app will use an Express.js back end and will save and retrieve note data from a JSON file.
 ```
 
-## User5 Story
+## User Story
 
 ```
 AS a small business owner
