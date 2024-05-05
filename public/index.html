@@ -14,7 +14,31 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
-  <body></body>
+  <body>
+    <!--navbar-->
+    <nav class="navbar navbar-dark bg-dark">
+      <!--a tag navbar-brand home path-->
+      <a class="navbar-brand" href="/">Note Taker </a>
+    </nav>
+    <!--container-->
+    <div class="container">
+      <!--margin-top 80px, class jumbotron center text-->
+      <div style="margin-top: 80px" class="jumbotron text-center">
+        <!--display 4-->
+        <h1 class="display-4">
+          <!-- span role-imag label- memo-->
+          <span role="img" aria-label="Memo"> </span>
+        </h1>
+        <!--h4 margin top 4-->
+        <h4 class="mt-4">Take Notes With Express</h4>
+        <!--btn class notes path role-button-->
+        <a class="btn btn-primary btn-lg mt-4" href="/notes" role="button"
+          >Get Notes</a
+        >
+      </div>
+    </div>
+    <!--script js file-->
+    <script src="/public/assets/js/index.js"></script>
+  </body>
 </html>
