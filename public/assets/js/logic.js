@@ -22,3 +22,34 @@ console.log(typeof newNoteBtn);
 console.log(typeof noteList);
 
 
+// Show an element
+const show = (elem) => {
+	elem.style.display = 'inline';
+}
+
+// Hide an element
+const hide = (elem) => {
+	elem.style.display = 'none';
+}
+
+
+// event listeners for assigned note variables
+// if notes path is hit
+if (window.location.pathname === '/notes') {
+	// new note button add event listener and log check to console
+	newNoteBtn.addEventListener('click', () => {
+		console.log('newBtn works');
+	});
+	// show save button for log to console
+	show(saveNoteBtn);
+	// save button add event listener log in console
+	saveNoteBtn.addEventListener('click', () => {
+		console.log('saveBtn works')
+	});
+
+
+
+
+
+
+}

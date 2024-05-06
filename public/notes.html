@@ -28,13 +28,15 @@
     <!--navbar-->
     <nav class="navbar navbar-dark bg-dark">
       <!--a tag home route navbar-brand-->
-      <a class="navbar-brand" href="/">Note Taker</a>
+      <a class="navbar-brand" href="/"
+        >Note Taker <span style="font-size: 35px">&#x1F4DD;</span></a
+      >
       <!--icons-->
       <div class="icons">
         <!--save icon save-note-->
-        <i class="fas fa-save text-light save-note"></i>
+        <i class="fas fa-save text-secondary save-note"></i>
         <!--plus icon new-note-->
-        <i class="fas fa-plus text-light new-note"></i>
+        <i class="fas fa-plus text-secondary new-note"></i>
       </div>
     </nav>
     <!--container fluid-->
@@ -53,12 +55,15 @@
         <div class="col-8">
           <input
             class="note-title"
-            placeholder="Note Title"
+            placeholder="Note Title Here"
             maxlength="28"
             type="text"
           />
           <!--Text-Area-->
-          <textarea class="note-textarea" placeholder="Note Text"></textarea>
+          <textarea
+            class="note-textarea"
+            placeholder="Note Text Here"
+          ></textarea>
         </div>
       </div>
     </div>
