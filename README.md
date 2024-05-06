@@ -4,6 +4,10 @@
 
 A note taking application using Express.js on the back end and a json file to store data.
 
+## Image
+
+## <img src="./public/assets/image/express_notes_app_pic_blunite.png" style="width:700px">
+
 ## Task
 
 ```
