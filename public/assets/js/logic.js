@@ -46,6 +46,17 @@ if (window.location.pathname === '/notes') {
 	saveNoteBtn.addEventListener('click', () => {
 		console.log('saveBtn works')
 	});
+	// check for target value keyup event for note title
+	noteTitle.addEventListener('keyup', (e) => {
+		e.preventDefault()
+		console.log(e.target.value)
+	});
+
+	// check for target value note text keyup  event
+	noteText.addEventListener('keyup', (e) => {
+		e.preventDefault()
+		console.log(e.target.value)
+	})
 
 
 
