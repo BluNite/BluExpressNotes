@@ -1,0 +1,28 @@
+{
+  "name": "bluexpressnotes",
+  "version": "1.0.0",
+  "description": " note saving app  using Express.js",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BluNite/BluExpressNotes.git"
+  },
+  "author": "blunite (nkenge crowe)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BluNite/BluExpressNotes/issues"
+  },
+  "homepage": "https://github.com/BluNite/BluExpressNotes#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
