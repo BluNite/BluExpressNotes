@@ -32,6 +32,28 @@ const hide = (elem) => {
 	elem.style.display = 'none';
 }
 
+// will show the save button if noteText and noteTitle values is true
+const handleRenderSaveBtn = () => {
+	if (!noteTitle.value.trim() || !noteText.value.trim()) {
+		hide(saveNoteBtn)
+	} else {
+		show(saveNoteBtn)
+	}
+}
+
+
+
+
+// handler for saving notes creates object newNote 
+const handleNoteSave = () => {
+	const newNote = {
+		title: noteTitle.value,
+		text: noteText.value,
+	};
+	console.log(newNote);
+
+}
+
 
 // event listeners for assigned note variables
 // if notes path is hit
@@ -40,23 +62,16 @@ if (window.location.pathname === '/notes') {
 	newNoteBtn.addEventListener('click', () => {
 		console.log('newBtn works');
 	});
-	// show save button for log to console
-	show(saveNoteBtn);
-	// save button add event listener log in console
-	saveNoteBtn.addEventListener('click', () => {
-		console.log('saveBtn works')
-	});
-	// check for target value keyup event for note title
-	noteTitle.addEventListener('keyup', (e) => {
-		e.preventDefault()
-		console.log(e.target.value)
-	});
 
-	// check for target value note text keyup  event
-	noteText.addEventListener('keyup', (e) => {
-		e.preventDefault()
-		console.log(e.target.value)
-	})
+	// save button add event listener log in console
+	saveNoteBtn.addEventListener('click', handleNoteSave);
+	// listen for keyup event handler renders saveBtn
+	noteTitle.addEventListener('keyup', handleRenderSaveBtn
+	);
+
+	//listen for keyup event handler renders saveBtn
+	noteText.addEventListener('keyup', handleRenderSaveBtn
+	);
 
 
 
