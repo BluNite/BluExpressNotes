@@ -9,7 +9,7 @@ const path = require('path');
 
 
 // html/index route
-router.get('/*', function (req, res) {
+router.get('/', function (req, res) {
 	res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 //html/ notes route
