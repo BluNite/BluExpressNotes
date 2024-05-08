@@ -22,6 +22,11 @@ console.log(typeof newNoteBtn);
 console.log(typeof noteList);
 
 
+
+
+
+
+
 // Show an element
 const show = (elem) => {
 	elem.style.display = 'inline';
@@ -32,13 +37,14 @@ const hide = (elem) => {
 	elem.style.display = 'none';
 }
 
-// will show the save button if noteText and noteTitle values is true
+// will show the save button if noteText and noteTitle values are true
 const handleRenderSaveBtn = () => {
 	if (!noteTitle.value.trim() || !noteText.value.trim()) {
 		hide(saveNoteBtn)
 	} else {
 		show(saveNoteBtn)
 	}
+
 }
 
 
@@ -72,10 +78,5 @@ if (window.location.pathname === '/notes') {
 	//listen for keyup event handler renders saveBtn
 	noteText.addEventListener('keyup', handleRenderSaveBtn
 	);
-
-
-
-
-
 
 }

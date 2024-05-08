@@ -1,21 +1,24 @@
 // require dependencies
 // express
 const express = require('express');
-//  path module
-const path = require('path');
+
 
 // create express router to express
 const router = express.Router();
+const path = require('path');
 
-// notes route
+
+// html/index route
+router.get('/*', (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/index.html"));
+});
+//html/ notes route
 router.get('/notes', (req, res) => {
 	res.sendFile(path.join(__dirname, "../public/notes.html"));
 });
 
-// html/home route
-router.get('/*', (req, res) => {
-	res.sendFile(path.join(__dirname, "../public/index.html"));
-});
+
+
 
 
 // export router
