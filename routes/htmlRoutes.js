@@ -9,13 +9,15 @@ const path = require('path');
 
 
 // html/index route
-router.get('/*', (req, res) => {
+router.get('/*', function (req, res) {
 	res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 //html/ notes route
-router.get('/notes', (req, res) => {
+router.get('/notes', function (req, res) {
 	res.sendFile(path.join(__dirname, "../public/notes.html"));
 });
+
+
 
 
 
