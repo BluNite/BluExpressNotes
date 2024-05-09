@@ -3,7 +3,7 @@ const fs = require('fs');
 const util = require('util');
 
 // json database
-const noteData = "/db/db.json";
+const noteData = "./db.json";
 
 // read, write file async promise
 const readFileAsync = util.promisify(fs.readFile);
