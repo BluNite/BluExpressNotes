@@ -8,15 +8,17 @@ const router = express.Router();
 const path = require('path');
 
 
-// html/index route
-router.get('/', function (req, res) {
-	res.sendFile(path.join(__dirname, "../public/index.html"));
-});
-//html/ notes route
+
+
+
+//html /notes path
 router.get('/notes', function (req, res) {
 	res.sendFile(path.join(__dirname, "../public/notes.html"));
 });
-
+// html/ index path
+router.get('/*', function (req, res) {
+	res.sendFile(path.join(__dirname, "../public/index.html"));
+});
 
 
 
