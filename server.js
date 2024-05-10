@@ -3,10 +3,6 @@ const express = require('express');
 //create express app
 const app = express();
 
-
-
-
-
 // create PORT reference
 const PORT = process.env.PORT || 3000;
 

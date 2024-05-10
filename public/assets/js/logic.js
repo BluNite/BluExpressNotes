@@ -65,9 +65,6 @@ const handleNoteSave = () => {
 // if notes path is hit
 if (window.location.pathname === '/notes') {
 	// new note button add event listener and log check to console
-
-
-
 	// save button add event listener log in console
 	saveNoteBtn.addEventListener('click', handleNoteSave);
 	// listen for keyup event handler renders saveBtn
