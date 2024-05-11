@@ -72,7 +72,7 @@ const handleNoteSave = () => {
 	console.log(newNote);
 
 }
-// handler for GET route 
+// cb for GET route render notes
 const getAndRenderNotes = () => getNotes().then(renderNoteList);
 // event listeners for assigned note variables
 // if notes path is hit
