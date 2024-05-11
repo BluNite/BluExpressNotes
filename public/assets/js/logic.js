@@ -4,7 +4,7 @@ let noteText;
 let saveNoteBtn;
 let newNoteBtn;
 let noteList;
-
+// brackets to store notes data 
 
 // if notes path is hit assign variables to class elements
 if (window.location.pathname === '/notes') {
@@ -14,22 +14,38 @@ if (window.location.pathname === '/notes') {
 	newNoteBtn = document.querySelector('.new-note');
 	noteList = document.querySelectorAll('.list-container .list-group');
 }
-// log to check availability of note variables
-console.log(typeof noteTitle);
-console.log(typeof noteText);
-console.log(typeof saveNoteBtn);
-console.log(typeof newNoteBtn);
-console.log(typeof noteList);
 
 
 
 
+
+
+// activeNote keeps track of textarea notes
+const activeNote = [];
+// fetch notes GET request
+const getNotes = () =>
+	fetch('/api/notes', {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+		}
+	}
+
+	)
+
+
+// data for GET notes route
+const renderNoteList = (notes) => {
+	// check in network responses
+	return notes.json();
+}
 
 
 
 // Show an element
 const show = (elem) => {
 	elem.style.display = 'inline';
+
 }
 
 // Hide an element
@@ -44,23 +60,20 @@ const handleRenderSaveBtn = () => {
 	} else {
 		show(saveNoteBtn)
 	}
-
 }
 
-
-
-
-// handler for saving notes creates object newNote 
+// handler for saving text from keyup events creates object newNote 
 const handleNoteSave = () => {
 	const newNote = {
 		title: noteTitle.value,
 		text: noteText.value,
 	};
+	// new note obj. shows in console
 	console.log(newNote);
 
 }
-
-
+// handler for GET route 
+const getAndRenderNotes = () => getNotes().then(renderNoteList);
 // event listeners for assigned note variables
 // if notes path is hit
 if (window.location.pathname === '/notes') {
@@ -68,9 +81,10 @@ if (window.location.pathname === '/notes') {
 	// save button add event listener log in console
 	saveNoteBtn.addEventListener('click', handleNoteSave);
 	// listen for keyup event handler renders saveBtn
-	noteTitle.addEventListener('keyup', handleRenderSaveBtn
+	noteTitle.addEventListener('keyup', handleRenderSaveBtn,
 	);
-
+	//check network for response 
+	getAndRenderNotes();
 	//listen for keyup event handler renders saveBtn
 	noteText.addEventListener('keyup', handleRenderSaveBtn
 	);

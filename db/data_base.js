@@ -8,7 +8,7 @@ const readFileAsync = util.promisify(fs.readFile);
 // writFile async promise 
 const writeFileAsync = util.promisify(fs.writeFile);
 // DataBase class 
-Lorem ipsum dolor sit amet consectetur, adipisicing elit.Ullam possimus consequatur eos labore enim impedit, quasi fugit, qui ratione tenetur atque nihil deserunt excepturi provident libero voluptates laudantium ? Odio vel temporibus exercitationem illo error molestiae illum iste.Saepe quo est nihil aperiam praesentium voluptatum molestias accusamus libero minus ? Dolorem esse soluta sequi, voluptatibus vitae sint.
+
 class DataBase {
 	// read notes from database json file
 	async readNotes() {
