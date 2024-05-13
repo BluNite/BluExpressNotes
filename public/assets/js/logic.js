@@ -21,7 +21,7 @@ if (window.location.pathname === '/notes') {
 
 
 // activeNote keeps track of textarea notes
-const activeNote = [];
+const activeNote = {};
 // fetch notes GET request
 const getNotes = () =>
 	fetch('/api/notes', {
@@ -30,15 +30,62 @@ const getNotes = () =>
 			'Content-Type': 'application/json',
 		}
 	}
+	);
 
-	)
+// Render the list of note titles
 
+//async function takes notes argument 
+const renderNoteList = async (notes) => {
+	let jsonNotes = await notes.json();
+	if (window.location.pathname === '/notes') {
+		// noteList element
+		noteList.forEach((el) => (el.innerHTML = ''));
+	}
+	// check for jsonNotes
+	console.log(jsonNotes)
 
-// data for GET notes route
-const renderNoteList = (notes) => {
-	// check in network responses
-	return notes.json();
+	// tracks note list
+	let noteListItems = [];
+
+	// create list element
+	const createLi = (text) => {
+		const liEl = document.createElement('li');
+		liEl.classList.add("list-group-item")
+		liEl.innerText = text;
+		const spanEl = document.createElement('span');
+		spanEl.classList.add('list-item-title');
+		spanEl.innerText = text;
+		liEl.append(spanEl);
+		return liEl;
+	}
+	// Returns HTML element with or without a deleteButton
+	//loop through jsonNotes create list cb for each note
+	jsonNotes.forEach((note) => {
+		const li = createLi(note.title);
+		li.dataset.note = JSON.stringify(note);
+
+		noteListItems.push(li);
+	})
+
+	if (window.location.pathname === '/notes') {
+		noteListItems.forEach((note) => noteList[0].append(note));
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -77,6 +124,8 @@ const getAndRenderNotes = () => getNotes().then(renderNoteList);
 // event listeners for assigned note variables
 // if notes path is hit
 if (window.location.pathname === '/notes') {
+	// note list event listener
+
 	// new note button add event listener and log check to console
 	// save button add event listener log in console
 	saveNoteBtn.addEventListener('click', handleNoteSave);
@@ -84,9 +133,10 @@ if (window.location.pathname === '/notes') {
 	noteTitle.addEventListener('keyup', handleRenderSaveBtn,
 	);
 	//check network for response 
-	getAndRenderNotes();
+
 	//listen for keyup event handler renders saveBtn
 	noteText.addEventListener('keyup', handleRenderSaveBtn
 	);
 
 }
+getAndRenderNotes();
