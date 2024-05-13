@@ -54,35 +54,23 @@ const renderNoteList = async (notes) => {
 		liEl.append(spanEl);
 		return liEl;
 	}
+
+
 	// Returns HTML element with or without a deleteButton
-	//loop through jsonNotes create list cb for each note
+	// loop through jsonNotes create list cb for each note
+
 	jsonNotes.forEach((note) => {
 		const li = createLi(note.title);
 		li.dataset.note = JSON.stringify(note);
-
 		noteListItems.push(li);
 	})
+	// if notes path is hit noteListItems array loop through notes to noteList
 	// if notes path is hit noteListItems array loop through append notes to noteList[0]
 	if (window.location.pathname === '/notes') {
 		noteListItems.forEach((note) => noteList[0].append(note));
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Show an element
