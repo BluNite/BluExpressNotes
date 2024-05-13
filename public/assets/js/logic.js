@@ -15,13 +15,9 @@ if (window.location.pathname === '/notes') {
 	noteList = document.querySelectorAll('.list-container .list-group');
 }
 
-
-
-
-
-
 // activeNote keeps track of textarea notes
 const activeNote = {};
+
 // fetch notes GET request
 const getNotes = () =>
 	fetch('/api/notes', {
@@ -66,7 +62,7 @@ const renderNoteList = async (notes) => {
 
 		noteListItems.push(li);
 	})
-
+	// if notes path is hit noteListItems array loop through append notes to noteList[0]
 	if (window.location.pathname === '/notes') {
 		noteListItems.forEach((note) => noteList[0].append(note));
 	}
