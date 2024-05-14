@@ -16,7 +16,7 @@ if (window.location.pathname === '/notes') {
 }
 
 // activeNote keeps track of textarea notes
-const activeNote = {};
+let activeNote = {};
 
 // fetch notes GET request
 const getNotes = () =>
@@ -27,6 +27,43 @@ const getNotes = () =>
 		}
 	}
 	);
+
+
+
+
+// render activeNote array to title and text elements
+const renderActiveNote = () => {
+	hide(saveNoteBtn);
+
+	if (activeNote.id) {
+		noteTitle.setAttribute('readonly', true);
+		noteText.setAttribute('readonly', true);
+		noteTitle.value = activeNote.title;
+		noteText.value = activeNote.text;
+	} else {
+		noteTitle.removeAttribute('readonly');
+		noteText.removeAttribute('readonly');
+		noteTitle.value = '';
+		noteText.value = '';
+	}
+}
+
+
+
+
+
+// Sets the activeNote and displays it
+const handleNoteView = (e) => {
+	e.preventDefault();
+	// activeNote is loaded with data-note parsed
+	activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
+	// render active note array to title and text elements
+	renderActiveNote();
+}
+
+
+
+
 
 // Render the list of note titles
 
@@ -47,10 +84,11 @@ const renderNoteList = async (notes) => {
 	const createLi = (text) => {
 		const liEl = document.createElement('li');
 		liEl.classList.add("list-group-item")
-		liEl.innerText = text;
+
 		const spanEl = document.createElement('span');
 		spanEl.classList.add('list-item-title');
 		spanEl.innerText = text;
+		spanEl.addEventListener('click', handleNoteView)
 		liEl.append(spanEl);
 		return liEl;
 	}
@@ -64,7 +102,7 @@ const renderNoteList = async (notes) => {
 		li.dataset.note = JSON.stringify(note);
 		noteListItems.push(li);
 	})
-	// if notes path is hit noteListItems array loop through notes to noteList
+
 	// if notes path is hit noteListItems array loop through append notes to noteList[0]
 	if (window.location.pathname === '/notes') {
 		noteListItems.forEach((note) => noteList[0].append(note));
@@ -103,6 +141,8 @@ const handleNoteSave = () => {
 	console.log(newNote);
 
 }
+
+
 // cb for GET route render notes
 const getAndRenderNotes = () => getNotes().then(renderNoteList);
 // event listeners for assigned note variables
