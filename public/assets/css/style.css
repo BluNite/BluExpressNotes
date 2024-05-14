@@ -80,6 +80,9 @@ body {
   border-right: none;
   padding: 20px;
   cursor: pointer;
-  background-color: lightcoral;
-  color: rgb(241, 247, 250);
+  background-color: lightcyan;
+  color: #0f0f0f;
+}
+span {
+  margin-right: 15px;
 }

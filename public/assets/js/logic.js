@@ -1,3 +1,5 @@
+
+
 // unassigned variables for note classes
 let noteTitle;
 let noteText;
@@ -71,7 +73,11 @@ const handleNoteView = (e) => {
 	renderActiveNote();
 }
 
-
+// new notes view clears sets empty array
+const handleNewNoteView = (e) => {
+	activeNote = {};
+	renderActiveNote();
+};
 
 
 
@@ -91,7 +97,7 @@ const renderNoteList = async (notes) => {
 	let noteListItems = [];
 
 	// create list element
-	const createLi = (text) => {
+	const createLi = (text, delBtn = true) => {
 		const liEl = document.createElement('li');
 		liEl.classList.add("list-group-item")
 
@@ -100,12 +106,32 @@ const renderNoteList = async (notes) => {
 		spanEl.innerText = text;
 		spanEl.addEventListener('click', handleNoteView)
 		liEl.append(spanEl);
+		// if there is a deleBtn(true) creates deleteBtn element add classes
+		if (delBtn) {
+			const delBtnEl = document.createElement('i');
+			delBtnEl.classList.add(
+				'fas',
+				'fa-trash-alt',
+				'float-right',
+				'text-danger',
+				'delete-note',
+
+			);
+			// delete btn listen for click event check console for log
+			delBtnEl.addEventListener('click', () => {
+				console.log('click delbtn works')
+			})
+			liEl.append(delBtnEl);
+		}
+
 		return liEl;
 	}
 
 
 	// Returns HTML element with or without a deleteButton
 	// loop through jsonNotes create list cb for each note
+
+
 
 	jsonNotes.forEach((note) => {
 		const li = createLi(note.title);
@@ -161,15 +187,14 @@ const getAndRenderNotes = () => getNotes().then(renderNoteList);
 // event listeners for assigned note variables
 // if notes path is hit
 if (window.location.pathname === '/notes') {
-	// note list event listener
-
 	// new note button add event listener and log check to console
+	newNoteBtn.addEventListener('click', handleNewNoteView);
 	// save button add event listener log in console
 	saveNoteBtn.addEventListener('click', handleNoteSave);
 	// listen for keyup event handler renders saveBtn
 	noteTitle.addEventListener('keyup', handleRenderSaveBtn,
 	);
-	//check network for response 
+
 
 	//listen for keyup event handler renders saveBtn
 	noteText.addEventListener('keyup', handleRenderSaveBtn
