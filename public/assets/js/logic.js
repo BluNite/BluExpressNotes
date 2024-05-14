@@ -90,6 +90,9 @@ const handleNoteDelete = (e) => {
 	const note = e.target;
 	//test log for note in DOM
 	console.log(note)
+	const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
+	// test log for note parentEl attribute data-note 'id'
+	console.log(noteId)
 }
 
 
