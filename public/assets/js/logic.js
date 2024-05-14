@@ -43,19 +43,24 @@ const saveNote = (note) =>
 
 
 
-// render activeNote array to title and text elements
+// render activeNote array to title and text elements if no id remove readonly attr. set elements to blank text
 const renderActiveNote = () => {
 	hide(saveNoteBtn);
-
+	// if there is an 'id' property
 	if (activeNote.id) {
 		noteTitle.setAttribute('readonly', true);
 		noteText.setAttribute('readonly', true);
+		// note title element
 		noteTitle.value = activeNote.title;
+		// note text element
 		noteText.value = activeNote.text;
 	} else {
+
 		noteTitle.removeAttribute('readonly');
 		noteText.removeAttribute('readonly');
+		// note title element
 		noteTitle.value = '';
+		// note text element
 		noteText.value = '';
 	}
 }
@@ -79,6 +84,13 @@ const handleNewNoteView = (e) => {
 	renderActiveNote();
 };
 
+// note delete handler
+const handleNoteDelete = (e) => {
+	e.stopPropagation();
+	const note = e.target;
+	//test log for note in DOM
+	console.log(note)
+}
 
 
 // Render the list of note titles
@@ -118,9 +130,7 @@ const renderNoteList = async (notes) => {
 
 			);
 			// delete btn listen for click event check console for log
-			delBtnEl.addEventListener('click', () => {
-				console.log('click delbtn works')
-			})
+			delBtnEl.addEventListener('click', handleNoteDelete)
 			liEl.append(delBtnEl);
 		}
 
