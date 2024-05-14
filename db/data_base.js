@@ -11,7 +11,7 @@ const writeFileAsync = util.promisify(fs.writeFile);
 
 class DataBase {
 	// read notes from database json file
-	async readNotes() {
+	async readNote() {
 		try {
 			// await  database json file
 			const notesRaw = await readFileAsync(noteData, "UTF8");
@@ -25,7 +25,7 @@ class DataBase {
 		}
 	}
 	//add notes to database json file 
-	async addNotes(data) {
+	async addNote(data) {
 		try {
 			await writeFileAsync(noteData, JSON.stringify(data, null, "\t")).then(() => {
 				console.log("note added")
@@ -36,7 +36,19 @@ class DataBase {
 		}
 	}
 
+	async deleteNote(data) {
+		try {
+			await writeFileAsync(noteData, JSON.stringify(data, null, "\t")).then(() => {
+				console.log("note deleted")
+			})
+		} catch (error) {
+			throw error;
+		}
+	}
+
 }
+
+
 
 module.exports = new DataBase();
 

@@ -43,6 +43,14 @@ const saveNote = (note) =>
 
 
 
+
+const deleteNote = (id) =>
+	fetch(`/api/notes/${id}`, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
 // render activeNote array to title and text elements if no id remove readonly attr. set elements to blank text
 const renderActiveNote = () => {
 	hide(saveNoteBtn);
@@ -84,16 +92,6 @@ const handleNewNoteView = (e) => {
 	renderActiveNote();
 };
 
-// note delete handler
-const handleNoteDelete = (e) => {
-	e.stopPropagation();
-	const note = e.target;
-	//test log for note in DOM
-	console.log(note)
-	const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
-	// test log for note parentEl attribute data-note 'id'
-	console.log(noteId)
-}
 
 
 // Render the list of note titles
@@ -133,7 +131,7 @@ const renderNoteList = async (notes) => {
 
 			);
 			// delete btn listen for click event check console for log
-			delBtnEl.addEventListener('click', handleNoteDelete)
+			delBtnEl.addEventListener('click', handleNoteDelete);
 			liEl.append(delBtnEl);
 		}
 
@@ -193,6 +191,28 @@ const handleNoteSave = () => {
 	});
 
 }
+
+
+const handleNoteDelete = (e) => {
+	e.stopPropagation();
+	const note = e.target;
+	//test log for note in DOM
+	console.log(note)
+	const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
+	// test log for note parentEl attribute data-note 'id'
+	console.log(noteId)
+	if (activeNote.id === noteId) {
+		console.log("active note ID matches noteId");
+		// declare activeNote empty
+		activeNote = {};
+	}
+	// create fetch cb route to accept noteID req.param
+	deleteNote(noteId).then(() => {
+		getAndRenderNotes();
+		renderActiveNote();
+	});
+
+};
 
 
 // cb for GET route render notes
