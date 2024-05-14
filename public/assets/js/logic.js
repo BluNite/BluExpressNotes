@@ -19,15 +19,25 @@ if (window.location.pathname === '/notes') {
 let activeNote = {};
 
 // fetch notes GET request
+
 const getNotes = () =>
 	fetch('/api/notes', {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
-		}
-	}
-	);
+		},
+	});
 
+// fetch notes Post request
+
+const saveNote = (note) =>
+	fetch('/api/notes', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(note),
+	});
 
 
 
@@ -101,7 +111,7 @@ const renderNoteList = async (notes) => {
 		const li = createLi(note.title);
 		li.dataset.note = JSON.stringify(note);
 		noteListItems.push(li);
-	})
+	});
 
 	// if notes path is hit noteListItems array loop through append notes to noteList[0]
 	if (window.location.pathname === '/notes') {
@@ -138,7 +148,10 @@ const handleNoteSave = () => {
 		text: noteText.value,
 	};
 	// new note obj. shows in console
-	console.log(newNote);
+	saveNote(newNote).then(() => {
+		getAndRenderNotes();
+		renderActiveNote();
+	});
 
 }
 
